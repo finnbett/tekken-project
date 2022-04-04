@@ -1,5 +1,6 @@
 import { getHomePage } from "./api";
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom'
 
 export function DisplayHomePage() {
     const [characters, setCharacters] = useState([{"name":"akuma","label":"Akuma","description":"\"You challenge me!?\""}])
@@ -17,9 +18,9 @@ export function DisplayHomePage() {
     return(
     
     <div>
-        <h1>hi</h1>
+        <h1>Please select a character.</h1>
         {characters.map(character =>{
-            return <li key={Math.random()}>{character.name}</li>
+            return <li key={Math.random()}><Link to={`/character/${character.name}`}>{character.label}</Link></li>
         })}
     </div>
     
