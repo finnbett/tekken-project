@@ -20,7 +20,12 @@ export function DisplayHomePage() {
     <div>
         <h1>Please select a character.</h1>
         {characters.map(character =>{
-            return <li key={Math.random()}><Link to= {`/character/${character.name}`} state={character.name}>{character.label}</Link></li>
+            return <li key={Math.random()}>
+                <Link to= {`/character/${character.name}`} state={character.name}>
+                    {character.label}
+                    <img src={`/images/${character.name}.webp`} alt="character"/>
+                    </Link>
+                    </li>
         })
     }
     </div>

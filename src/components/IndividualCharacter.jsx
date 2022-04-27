@@ -9,7 +9,6 @@ export function IndividualCharacter() {
     const [startupFrames, setStartupFrames] = useState(false)
     const [damage, setDamage] = useState(false)
     let location = useLocation()
-    console.log(location.state)
     let splitTitle = (location.state).split('')
     let titleFirstChar = splitTitle[0].toUpperCase()
     splitTitle[0] = titleFirstChar
@@ -23,7 +22,7 @@ export function IndividualCharacter() {
         .catch(err => {
             console.log(err.message)
         })
-    }, [])
+    }, [location.state])
 
 
     console.log(characterData)
@@ -36,24 +35,21 @@ export function IndividualCharacter() {
         <button onClick={() => setDamage(!damage)}>Display Damage</button>
 
         {
-        characterData.map(data =>{
-            return(<> 
-            <ul> 
-                <li key={Math.random()}>Input: {data.command}</li>
-                {hitFrames?<li key={Math.random()}>Frames on hit: {data.hit}</li>: null}
-                {blockFrames?<li key={Math.random()}>Frames on block: {data.block}</li>: null}
-                {startupFrames?<li key={Math.random()}>Startup Frames: {data.startup}</li>: null}
-                {damage?<li key={Math.random()}>Damage: {data.damage}</li>: null}
-            </ul>
+        characterData.map(data => {
+            return(
+            <> 
+                <ul> 
+                    <li key={Math.random()}>Input: {data.command}</li>
+                    {hitFrames?<li key={Math.random()}>Frames on hit: {data.hit}</li>: null}
+                    {blockFrames?<li key={Math.random()}>Frames on block: {data.block}</li>: null}
+                    {startupFrames?<li key={Math.random()}>Startup Frames: {data.startup}</li>: null}
+                    {damage?<li key={Math.random()}>Damage: {data.damage}</li>: null}
+                </ul>
             </>
-            
             )
-
         })
     }   
         </>
     )
 
 }
-
-///(hitFrames) =>  hitFrames ? setHitFrames(true) : setHitFrames(false)
