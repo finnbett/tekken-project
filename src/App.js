@@ -1,6 +1,6 @@
 import './App.css'
-import { DisplayHomePage } from './DisplayHomePage'
-import { IndividualCharacter } from './IndividualCharacter';
+import { DisplayHomePage } from './components/DisplayHomePage'
+import { IndividualCharacter } from './components/IndividualCharacter';
 import { Route, Routes } from 'react-router';
 
 
