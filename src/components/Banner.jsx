@@ -1,9 +1,11 @@
 import React from 'react'
 
-const createBanner = () => {
+const Banner = () => {
     return(
         <>
-         <img src="banner.webp" alt="" />
+         <img style={{width:'100vw', marginBottom:50}} src="images/banner.webp" alt="" />
         </>
     )
 }
+
+export default Banner
