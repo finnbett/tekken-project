@@ -1,7 +1,7 @@
 import { getHomePage } from "../api";
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
-import { Spinner, Card, Row, Col, Image } from "react-bootstrap";
+import { Spinner, Card, Row, Col } from "react-bootstrap";
 import Banner from "./Banner";
 
 export function DisplayHomePage() {
@@ -17,6 +17,7 @@ export function DisplayHomePage() {
         })
     }, [])
     console.log(characters)
+
     return(
     <>
     <Banner />
@@ -28,8 +29,8 @@ export function DisplayHomePage() {
             return<>
             <Col >
                 <Link to= {`/character/${character.name}`} state={character.name}>
-                    <Card style={{width: '9rem' }}>
-                        <Card.Img variant="top" src={`/images/${character.name}.webp`} width='200px'/>
+                    <Card style={{width: '9rem'  }}>
+                        <Card.Img variant="top" className="character-tile" src={`/images/${character.name}.webp`} width='200px'/>
                             <Card.Body>
                                 <Card.Title>
                                     {character.label}
@@ -54,12 +55,3 @@ export function DisplayHomePage() {
     )
 }
 
-// {characters.map(character =>{
-//     return <li key={Math.random()}>
-//         <Link to= {`/character/${character.name}`} state={character.name}>
-//             {/* {character.label} */}
-//             <img src={`/images/${character.name}.webp`} alt="character"/>
-//             </Link>
-//             </li>
-// })
-// }

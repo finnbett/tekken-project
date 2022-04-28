@@ -3,7 +3,7 @@ import { useLocation } from "react-router"
 import { Link } from 'react-router-dom'
 import request from "superagent"
 import Button from 'react-bootstrap/Button'
-import { ButtonGroup, ListGroupItem } from "react-bootstrap"
+import { ListGroupItem } from "react-bootstrap"
 import { ToggleButtonGroup, ToggleButton, Spinner, ListGroup, Card, Row, Col, Navbar } from "react-bootstrap"
 
 
@@ -39,7 +39,7 @@ export function IndividualCharacter() {
     return(
         <>
             <h1>{splitTitle}</h1>
-            <Navbar sticky="top">
+            <Navbar sticky="top" className="nav">
             <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
                 <img src={`/images/${location.state}.webp`} alt='character'/>
                 <div className="button-block" style={{paddingLeft:50}} >
@@ -62,7 +62,7 @@ export function IndividualCharacter() {
         {characterData.map(data => {
             return(
             <> 
-            <Card style={{width:'9rem'}}>
+            <Card style={{width:'9rem', margin:5}}>
                 <Card.Header>Input: <br /> <b>{data.command}</b></Card.Header>
                 <ListGroup variant="flush">
                     {hitFrames && data.hit?<ListGroupItem style={{backgroundColor:'#53dfa0' }}>{data.hit}</ListGroupItem>:null}
@@ -76,16 +76,8 @@ export function IndividualCharacter() {
             )
         })}
         </Row>
-}
+    }   
         </>
     )
 
 }
-
-// //       <ul> 
-// <li key={Math.random()}>Input: {data.command}</li>
-// {hitFrames?<li key={Math.random()}>Frames on hit: {data.hit}</li>: null}
-// {blockFrames?<li key={Math.random()}>Frames on block: {data.block}</li>: null}
-// {startupFrames?<li key={Math.random()}>Startup Frames: {data.startup}</li>: null}
-// {damage?<li key={Math.random()}>Damage: {data.damage}</li>: null}
-// </ul>

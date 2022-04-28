@@ -38,3 +38,9 @@
     transform: rotate(360deg);
   }
 }
+
+.character-tile:hover {
+  transform: scale(1.25);
+}
+
+
