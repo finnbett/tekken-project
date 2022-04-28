@@ -3,7 +3,8 @@ import { useLocation } from "react-router"
 import request from "superagent"
 import Button from 'react-bootstrap/Button'
 import { ButtonGroup } from "react-bootstrap"
-import { ToggleButtonGroup, ToggleButton } from "react-bootstrap"
+import { ToggleButtonGroup, ToggleButton, Spinner } from "react-bootstrap"
+
 
 
 export function IndividualCharacter() {
@@ -45,6 +46,7 @@ export function IndividualCharacter() {
             <ToggleButton id="tbg-btn-3" value={3} variant="secondary"  onClick={() => setStartupFrames(!startupFrames)}>Display Startup Frames</ToggleButton>
             <ToggleButton id="tbg-btn-4" value={4} variant="secondary"  onClick={() => setDamage(!damage)}>Display Damage</ToggleButton>
         </ToggleButtonGroup>
+        {characterData.length < 2 ? <Spinner animation='border' role='staus'><span className="visually-hidden">Loading...</span></Spinner>: null}
 
         {
         characterData.map(data => {
