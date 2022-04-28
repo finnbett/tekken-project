@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { useLocation } from "react-router"
+import { Link } from 'react-router-dom'
 import request from "superagent"
 import Button from 'react-bootstrap/Button'
-import { ButtonGroup } from "react-bootstrap"
-import { ToggleButtonGroup, ToggleButton, Spinner } from "react-bootstrap"
+import { ButtonGroup, ListGroupItem } from "react-bootstrap"
+import { ToggleButtonGroup, ToggleButton, Spinner, ListGroup, Card, Row, Col, Navbar } from "react-bootstrap"
 
 
 
@@ -37,33 +38,54 @@ export function IndividualCharacter() {
     console.log(location.state)
     return(
         <>
-        <h1>{splitTitle}</h1>
-        <img src={`/images/${location.state}.webp`} alt='character'/>
-        <Button variant="primary">Primary</Button>
-        <ToggleButtonGroup type="checkbox" value={value} onChange={handleChange} aria-label="Toolbar with button groups">
-            <ToggleButton id="tbg-btn-1" value={1} variant="secondary" onClick={() => setHitFrames(!hitFrames)}>Display Frames on hit</ToggleButton>
-            <ToggleButton id="tbg-btn-2" value={2} variant="secondary" onClick={() => setBlockFrames(!blockFrames)}>Display Frames on block</ToggleButton>
-            <ToggleButton id="tbg-btn-3" value={3} variant="secondary"  onClick={() => setStartupFrames(!startupFrames)}>Display Startup Frames</ToggleButton>
-            <ToggleButton id="tbg-btn-4" value={4} variant="secondary"  onClick={() => setDamage(!damage)}>Display Damage</ToggleButton>
-        </ToggleButtonGroup>
-        {characterData.length < 2 ? <Spinner animation='border' role='staus'><span className="visually-hidden">Loading...</span></Spinner>: null}
-
-        {
-        characterData.map(data => {
+            <h1>{splitTitle}</h1>
+            <Navbar sticky="top">
+            <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                <img src={`/images/${location.state}.webp`} alt='character'/>
+                <div className="button-block" style={{paddingLeft:50}} >
+                    <Link to='/'>
+                        <Button variant="primary" size="lg" style={{marginRight:20}}>Character Select</Button>
+                    </Link>
+                    <ToggleButtonGroup type="checkbox" value={value} onChange={handleChange} aria-label="Toolbar with button groups">
+                        <ToggleButton id="tbg-btn-1" value={1} variant="success" onClick={() => setHitFrames(!hitFrames)}>Display Frames on hit</ToggleButton>
+                        <ToggleButton id="tbg-btn-2" value={2} variant="secondary" onClick={() => setBlockFrames(!blockFrames)}>Display Frames on block</ToggleButton>
+                        <ToggleButton id="tbg-btn-3" value={3} variant="info"  onClick={() => setStartupFrames(!startupFrames)}>Display Startup Frames</ToggleButton>
+                        <ToggleButton id="tbg-btn-4" value={4} variant="danger"  onClick={() => setDamage(!damage)}>Display Damage</ToggleButton>
+                    </ToggleButtonGroup>
+                </div>
+            </div>
+        </Navbar>
+        
+        {characterData.length < 2 ? <Spinner animation='border' role='staus'><span className="visually-hidden">Loading...</span></Spinner>: 
+        <Row md={10} className="g-4">
+        
+        {characterData.map(data => {
             return(
             <> 
-                <ul> 
-                    <li key={Math.random()}>Input: {data.command}</li>
-                    {hitFrames?<li key={Math.random()}>Frames on hit: {data.hit}</li>: null}
-                    {blockFrames?<li key={Math.random()}>Frames on block: {data.block}</li>: null}
-                    {startupFrames?<li key={Math.random()}>Startup Frames: {data.startup}</li>: null}
-                    {damage?<li key={Math.random()}>Damage: {data.damage}</li>: null}
-                </ul>
+            <Card style={{width:'9rem'}}>
+                <Card.Header>Input: <br /> <b>{data.command}</b></Card.Header>
+                <ListGroup variant="flush">
+                    {hitFrames && data.hit?<ListGroupItem style={{backgroundColor:'#53dfa0' }}>{data.hit}</ListGroupItem>:null}
+                    {blockFrames && data.block?<ListGroupItem style={{backgroundColor:'#9fa6ad'}}>{data.block}</ListGroupItem>:null}
+                    {startupFrames && data.startup?<ListGroupItem style={{backgroundColor:'#87e5f7'}}>{data.startup}</ListGroupItem>:null}
+                    {damage && data.damage?<ListGroupItem style={{backgroundColor: '#e1848d'}}>{data.damage}</ListGroupItem>:null}
+                </ListGroup>
+            </Card>
+         
             </>
             )
-        })
-    }   
+        })}
+        </Row>
+}
         </>
     )
 
 }
+
+// //       <ul> 
+// <li key={Math.random()}>Input: {data.command}</li>
+// {hitFrames?<li key={Math.random()}>Frames on hit: {data.hit}</li>: null}
+// {blockFrames?<li key={Math.random()}>Frames on block: {data.block}</li>: null}
+// {startupFrames?<li key={Math.random()}>Startup Frames: {data.startup}</li>: null}
+// {damage?<li key={Math.random()}>Damage: {data.damage}</li>: null}
+// </ul>
