@@ -17,7 +17,7 @@ export function IndividualCharacter() {
     const [damage, setDamage] = useState(false)
     const [value, setValue] = useState([])
     let location = useLocation()
-    console.log(location.state)
+    // console.log(location)
     let splitTitle = (location.state[0]).split('')
     let titleFirstChar = splitTitle[0].toUpperCase()
     splitTitle[0] = titleFirstChar
