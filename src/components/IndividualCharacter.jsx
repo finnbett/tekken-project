@@ -17,12 +17,13 @@ export function IndividualCharacter() {
     const [damage, setDamage] = useState(false)
     const [value, setValue] = useState([])
     let location = useLocation()
-    let splitTitle = (location.state).split('')
+    console.log(location.state)
+    let splitTitle = (location.state[0]).split('')
     let titleFirstChar = splitTitle[0].toUpperCase()
     splitTitle[0] = titleFirstChar
-
+    
     useEffect(() => {
-        request.get(`http://tkn-api.herokuapp.com/character/${location.state}`)
+        request.get(`http://tkn-api.herokuapp.com/character/${location.state[0]}`)
         .then(res => res.body)
         .then(res => {
             setCharacterData(res)
@@ -36,12 +37,14 @@ export function IndividualCharacter() {
 
 
     // console.log(characterData)
-    console.log(location.state)
     return(
         <div className="individual">
             <div className="title-image-container">
-                <h1 className="character-title">{splitTitle}</h1>
-                    <img src={`/images/${location.state}.webp`} alt='character'/>
+                <div className="title-container">
+                    <h1 className="character-title">{splitTitle}</h1>
+                    <h2 className="sub-heading">{location.state[1]}</h2>
+                </div>
+                    <img src={`/images/${location.state[0]}.webp`} alt='character'/>
             </div>
             <Navbar sticky="top" >
             <div className="nav">

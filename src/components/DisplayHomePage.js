@@ -29,7 +29,7 @@ export function DisplayHomePage() {
         {characters.map(character => {
             return<>
             <Col >
-                <Link to= {`/character/${character.name}`} state={character.name}>
+                <Link to= {`/character/${character.name}`} state={[character.name, character.description]}>
                     <Card style={{width: '9rem'  }}>
                         <Card.Img variant="top" className="character-tile" src={`/images/${character.name}.webp`} width='200px'/>
                             <Card.Body>
@@ -37,7 +37,7 @@ export function DisplayHomePage() {
                                     {character.label}
                                 </Card.Title>
                                 <Card.Text>
-                                    {/* {character.description} */}
+                                    {/* {} */}
                                 </Card.Text>
                             </Card.Body>
                     </Card>
