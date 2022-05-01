@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import { Spinner, Card, Row, Col } from "react-bootstrap";
 import Banner from "./Banner";
+import '../App.css'
 
 export function DisplayHomePage() {
     const [characters, setCharacters] = useState([{"name":"akuma","label":"Akuma","description":"\"You challenge me!?\""}])
@@ -21,7 +22,7 @@ export function DisplayHomePage() {
     return(
     <>
     <Banner />
-    <div>
+    <div className="tiles-homepage">
         <h1>Please select a character.</h1>
         {characters.length < 2 ? <Spinner animation='border' role='staus'><span className="visually-hidden">Loading...</span></Spinner>: 
         <Row md={10} className="g-4">

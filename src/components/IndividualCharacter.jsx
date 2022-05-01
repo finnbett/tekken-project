@@ -5,6 +5,7 @@ import request from "superagent"
 import Button from 'react-bootstrap/Button'
 import { ListGroupItem } from "react-bootstrap"
 import { ToggleButtonGroup, ToggleButton, Spinner, ListGroup, Card, Row, Col, Navbar } from "react-bootstrap"
+import '../App.css'
 
 
 
@@ -37,31 +38,34 @@ export function IndividualCharacter() {
     // console.log(characterData)
     console.log(location.state)
     return(
-        <>
-            <h1>{splitTitle}</h1>
-            <Navbar sticky="top" className="nav">
-            <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-                <img src={`/images/${location.state}.webp`} alt='character'/>
-                <div className="button-block" style={{paddingLeft:50}} >
+        <div className="individual">
+            <div className="title-image-container">
+                <h1 className="character-title">{splitTitle}</h1>
+                    <img src={`/images/${location.state}.webp`} alt='character'/>
+            </div>
+            <Navbar sticky="top" >
+            <div className="nav">
+                <div className="button-block"  >
                     <Link to='/'>
-                        <Button variant="primary" size="lg" style={{marginRight:20}}>Character Select</Button>
+                        <Button variant="primary" size="lg" className="character-select">Character Select</Button>
                     </Link>
                     <ToggleButtonGroup type="checkbox" value={value} onChange={handleChange} aria-label="Toolbar with button groups">
-                        <ToggleButton id="tbg-btn-1" value={1} variant="success" onClick={() => setHitFrames(!hitFrames)}>Display Frames on hit</ToggleButton>
-                        <ToggleButton id="tbg-btn-2" value={2} variant="secondary" onClick={() => setBlockFrames(!blockFrames)}>Display Frames on block</ToggleButton>
-                        <ToggleButton id="tbg-btn-3" value={3} variant="info"  onClick={() => setStartupFrames(!startupFrames)}>Display Startup Frames</ToggleButton>
-                        <ToggleButton id="tbg-btn-4" value={4} variant="danger"  onClick={() => setDamage(!damage)}>Display Damage</ToggleButton>
+                        <ToggleButton id="tbg-btn-1" value={1} variant="success" onClick={() => setHitFrames(!hitFrames)}>Frames on hit</ToggleButton>
+                        <ToggleButton id="tbg-btn-2" value={2} variant="secondary" onClick={() => setBlockFrames(!blockFrames)}>Frames on block</ToggleButton>
+                        <ToggleButton id="tbg-btn-3" value={3} variant="info"  onClick={() => setStartupFrames(!startupFrames)}>Startup Frames</ToggleButton>
+                        <ToggleButton id="tbg-btn-4" value={4} variant="danger"  onClick={() => setDamage(!damage)}>Damage</ToggleButton>
                     </ToggleButtonGroup>
                 </div>
             </div>
         </Navbar>
         
         {characterData.length < 2 ? <Spinner animation='border' role='staus'><span className="visually-hidden">Loading...</span></Spinner>: 
-        <Row md={10} className="g-4">
+        <Row md={10} className="g-4" id="moves-container">
         
         {characterData.map(data => {
             return(
-            <> 
+             
+            <>
             <Card style={{width:'9rem', margin:5}}>
                 <Card.Header>Input: <br /> <b>{data.command}</b></Card.Header>
                 <ListGroup variant="flush">
@@ -71,13 +75,13 @@ export function IndividualCharacter() {
                     {damage && data.damage?<ListGroupItem style={{backgroundColor: '#e1848d'}}>{data.damage}</ListGroupItem>:null}
                 </ListGroup>
             </Card>
-         
             </>
+            
             )
         })}
         </Row>
     }   
-        </>
+        </div>
     )
 
 }
