@@ -23,7 +23,7 @@ export function IndividualCharacter() {
     splitTitle[0] = titleFirstChar
     
     useEffect(() => {
-        request.get(`http://tkn-api.herokuapp.com/character/${location.state[0]}`)
+        request.get(`https://tkn-api.herokuapp.com/character/${location.state[0]}`)
         .then(res => res.body)
         .then(res => {
             setCharacterData(res)

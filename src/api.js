@@ -1,5 +1,5 @@
 import request from "superagent";
-const TEKKENURL = 'http://tkn-api.herokuapp.com/character/'
+const TEKKENURL = 'https://tkn-api.herokuapp.com/character/'
 
 
 export function getHomePage() {
