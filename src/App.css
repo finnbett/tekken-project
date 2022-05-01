@@ -63,6 +63,8 @@
   align-self: center;
   margin-right: 3em;
   font-size: 2rem;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: bold;
 
 }
 
@@ -71,6 +73,10 @@
   font-size: 1.5rem;
 }
 
+.character-select{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: bold;
+}
 .title-container{
   align-self: center;
 }

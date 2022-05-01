@@ -23,7 +23,7 @@ export function DisplayHomePage() {
     <>
     <Banner />
     <div className="tiles-homepage">
-        <h1>Please select a character.</h1>
+        <h1 className="character-select">CHARACTER SELECT</h1>
         {characters.length < 2 ? <Spinner animation='border' role='staus'><span className="visually-hidden">Loading...</span></Spinner>: 
         <Row md={10} className="g-4">
         {characters.map(character => {
